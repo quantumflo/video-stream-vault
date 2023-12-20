@@ -1,12 +1,12 @@
 import React from 'react'
-import VideoContainer from './VideoContainer'
+import VideosContainer from './VideosContainer'
 import FiltersList from './FiltersList'
 
 const MainContainer = () => {
   return (
-    <div>
+    <div className='p-2'>
         <FiltersList></FiltersList>
-        <VideoContainer></VideoContainer>
+        <VideosContainer></VideosContainer>
     </div>
   )
 }
