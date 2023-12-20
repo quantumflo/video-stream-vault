@@ -1,18 +1,42 @@
-
 import { MAINLOGOIMG, HAMBURGERIMG, PROFILEIMG } from "../constants";
-const Header = () => {
-    return (
-        <div className="grid grid-flow-col shadow-lg">
-            <img className="h-16 p-2 col-span-1" alt='hamburger' src={HAMBURGERIMG} />
-            <img className="h-16 p-2 col-span-1"alt="main-logo" src={MAINLOGOIMG}  />
-            <div className="h-16 p-4 col-span-9">
-                <input type="text" placeholder="Search" />
-                <button className="pl-1">Search</button>
-            </div>
-            <img className="h-16 p-2 col-span-1" alt='profile' src={PROFILEIMG} />
+import { toggleMenu } from "../redux/appSlice";
+import { useDispatch } from "react-redux";
 
-        </div>
-    );
+const Header = () => {
+  const dispatch = useDispatch();
+
+  const toggleMenuHandler = () => {
+    dispatch(toggleMenu())
+  };
+  return (
+    <div className="grid grid-flow-col shadow-lg">
+      <div className="h-16 p-2 col-span-1 flex">
+        <img
+          className="h-16 p-2 col-span-1 cursor-pointer"
+          alt="hamburger"
+          src={HAMBURGERIMG}
+          onClick={toggleMenuHandler}
+        />
+        <img
+          className="h-16 p-2 col-span-1"
+          alt="main-logo"
+          src={MAINLOGOIMG}
+        />
+      </div>
+      <div className=" p-4 col-span-9 mx-auto">
+        <input
+          style={{ width: "30rem" }}
+          className="border h-8 rounded-l-full  border-gray-500 mb-1"
+          type="text"
+          placeholder="    Search"
+        />
+        <button className="border h-8 border-gray-500 rounded-r-full px-1 ">
+          Search{" "}
+        </button>
+      </div>
+      <img className="h-16 p-2 col-span-1" alt="profile" src={PROFILEIMG} />
+    </div>
+  );
 };
 
 export default Header;
