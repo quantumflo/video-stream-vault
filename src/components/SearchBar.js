@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
 import { YT_SEARCH_API, YT_SUGGESTIONS_API } from "../constants";
+import { useSelector, useDispatch } from "react-redux";
+import { cacheResults } from "../redux/searchSlice";
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const searchCache = useSelector((state) => state.search);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     console.log(searchQuery);
-    const timer = setTimeout(() => fetchSearchResults(), 200);
+    const timer = setTimeout(() => {
+      if( searchCache[searchQuery] ) {
+        setSuggestions(searchCache[searchQuery]);
+      } else fetchSearchResults();
+    }, 200);
 
     return () => {
       clearTimeout(timer);
@@ -18,14 +26,15 @@ const SearchBar = () => {
     const data = await response.json();
     console.log(data);
     setSuggestions(data[1]);
+    dispatch(cacheResults({ [searchQuery]: data[1]}))
   };
 
   const filteredVideos = async (suggestion) => {
-    const response = await fetch(`${YT_SEARCH_API}${suggestion}`);
-    const data = await response.json();
-    console.log(data);
-    setSuggestions([]);
-  }
+    // const response = await fetch(`${YT_SEARCH_API}${suggestion}`);
+    // const data = await response.json();
+    // console.log(data);
+    // setSuggestions([]);
+  };
 
   return (
     <div className=" p-4 col-span-9 mx-auto">
@@ -43,7 +52,12 @@ const SearchBar = () => {
         <div className="absolute bg-white border-r border-b border-l border-gray-400  w-120">
           <ul>
             {suggestions.map((suggestion) => (
-              <li onClick={() => filteredVideos(suggestion)} className="p-1 pl-3 font-medium">{suggestion}</li>
+              <li
+                onClick={() => filteredVideos(suggestion)}
+                className="p-1 pl-3 font-medium"
+              >
+                {suggestion}
+              </li>
             ))}
           </ul>
         </div>
