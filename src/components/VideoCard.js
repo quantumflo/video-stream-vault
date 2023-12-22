@@ -2,8 +2,7 @@
 
 const VideoCard = ({info}) => {
 const {snippet, statistics} = info;
-const {channelTitle, title, description, thumbnails} = snippet;
-console.log(info)
+const {channelTitle, title, thumbnails} = snippet;
   return (
     <div className=" m-4 w-80">
       <img className="rounded-lg max-w-110" src={thumbnails.medium.url} alt="thumbnail" />
