@@ -5,7 +5,11 @@ module.exports = {
 
   ],
   theme: {
-    extend: {},
+    extend: {
+      maxWidth: {
+        '110': '110%',
+      }
+    },
   },
   plugins: [],
 }
