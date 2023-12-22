@@ -10,7 +10,7 @@ const Header = () => {
   };
   return (
     <div className="grid grid-flow-col shadow-lg">
-      <div className="h-16 p-2 col-span-1 flex">
+      <div className="h-16 pl-4 col-span-1 flex">
         <img
           className="h-16 p-2 col-span-1 cursor-pointer"
           alt="hamburger"
@@ -34,7 +34,7 @@ const Header = () => {
           Search{" "}
         </button>
       </div>
-      <img className="h-16 p-2 col-span-1" alt="profile" src={PROFILEIMG} />
+      <img className="h-16 p-2 col-span-1 ml-72" alt="profile" src={PROFILEIMG} />
     </div>
   );
 };

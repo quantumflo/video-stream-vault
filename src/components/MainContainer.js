@@ -4,7 +4,7 @@ import FiltersList from './FiltersList'
 
 const MainContainer = () => {
   return (
-    <div className='p-2'>
+    <div className='p-2 overflow-x-hidden'>
         <FiltersList></FiltersList>
         <VideosContainer></VideosContainer>
     </div>
