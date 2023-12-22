@@ -8,6 +8,9 @@ module.exports = {
     extend: {
       maxWidth: {
         '110': '110%',
+      },
+      width: {
+        '120': '30rem',
       }
     },
   },
