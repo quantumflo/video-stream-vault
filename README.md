@@ -2,6 +2,16 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+# Features
+
+- Display list of most popular videos
+- Search Youtube using search suggestions
+- Search suggestions debouncing of 200ms
+- Caching for youtube search suggestions
+- Watch youtube video by clicking on the video
+- Youtube comments
+
 ## Available Scripts
 
 In the project directory, you can run:
