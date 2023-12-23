@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-
 import { useSelector, useDispatch } from "react-redux";
 import { cacheResults } from "../redux/searchSlice";
 import { setQueriedVideos } from "../redux/queriedVideosSlice";
+
 import {
   YT_SEARCH_API,
   YT_SUGGESTIONS_API,
@@ -12,6 +12,7 @@ import {
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [suggestionsVisible, setSuggestionsVisible] = useState(false);
   const searchCache = useSelector((state) => state.search);
   const dispatch = useDispatch();
 
@@ -19,7 +20,9 @@ const SearchBar = () => {
     const timer = setTimeout(() => {
       if (searchCache[searchQuery]) {
         setSuggestions(searchCache[searchQuery]);
-      } else fetchSuggestions();
+      } else {
+        fetchSuggestions();
+      }
     }, 200);
 
     return () => {
@@ -39,24 +42,23 @@ const SearchBar = () => {
       `${YT_SEARCH_API}${suggestion}&key=${REACT_APP_YOUTUBE_API_KEY}`
     );
     const data = await response.json();
-    console.log(data);
     dispatch(setQueriedVideos(data.items));
   };
 
   const onSuggestionClick = (suggestion) => {
     fetchSearchResults(suggestion);
     setSearchQuery(suggestion);
-    setSuggestions([]);
-  }
+    setSuggestionsVisible(false)
+  };
 
   return (
-    <div className=" p-4 col-span-9 mx-auto">
+    <div className="p-4 col-span-9 mx-auto relative">
       <input
-        className="border h-8 rounded-l-full p-4  border-gray-500 mb-1  w-120"
+        className="border h-8 rounded-l-full p-4 border-gray-500 mb-1 w-120"
         type="text"
         placeholder="Search"
-        onChange={(e) => setSearchQuery(e.target.value)}
-        onBlur={() => setSuggestions([])}
+        onChange={(e) => { setSuggestionsVisible(true); setSearchQuery(e.target.value)} }
+        onBlur={() => setSuggestionsVisible(false)}
         value={searchQuery}
       />
       <button
@@ -65,13 +67,13 @@ const SearchBar = () => {
       >
         Search
       </button>
-      {suggestions.length > 0 && (
-        <div className="absolute bg-white border-r border-b border-l border-gray-400  w-120">
+      {suggestionsVisible && (
+        <div className="absolute bg-white border-r border-b border-l border-gray-400 w-120 z-40">
           <ul>
-            {suggestions.map((suggestion) => (
+            {suggestions.map((suggestion, index) => (
               <li
-                key = {suggestion}
-                onClick={(e) => {console.log(e); onSuggestionClick(suggestion) } }
+                key={index}
+                onMouseDown={() => onSuggestionClick(suggestion)}
                 className="p-1 pl-3 font-medium cursor-pointer hover:bg-gray-200 z-10"
               >
                 {suggestion}

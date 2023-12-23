@@ -10,14 +10,14 @@ import { useSelector } from "react-redux";
 const VideosContainer = () => {
   const [videos, setVideos] = useState([]);
   const queriedVideos = useSelector((state) => state.queriedVideos);
-  
-  useEffect(() => {
-    setVideos(queriedVideos);
-  }, [queriedVideos]);
 
   useEffect(() => {
     fetchVideos();
   }, []);
+
+  useEffect(() => {
+    setVideos(queriedVideos);
+  }, [queriedVideos]);
 
   const fetchVideos = async () => {
     const response = await fetch(YOUTUBE_API);
@@ -26,11 +26,17 @@ const VideosContainer = () => {
   };
   return (
     <div className="flex flex-wrap pl-4 justify-center bg-whitesmoke">
-      {videos.length > 0 && videos.map((video) => (
-        <Link key={video.id} to={`/watch?v=${video.id}`}>
-        <VideoCard info={video}></VideoCard>
-        </Link>
-      ))}
+      {videos.length > 0 &&
+        videos.map((video) => (
+          <Link
+            key={video.etag}
+            to={`/watch?v=${
+              typeof video.id === "string" ? video.id : video.id.videoId
+            }`}
+          >
+            <VideoCard info={video}></VideoCard>
+          </Link>
+        ))}
     </div>
   );
 };
