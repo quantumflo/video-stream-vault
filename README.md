@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # Features
 
 - Display list of most popular videos
-- Search Youtube using search suggestions
+- Search Youtube using search suggestions autocomplete
 - Search suggestions debouncing of 200ms
 - Caching for youtube search suggestions
 - Watch youtube video by clicking on the video
