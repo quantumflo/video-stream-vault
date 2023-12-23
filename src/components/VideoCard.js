@@ -9,7 +9,7 @@ const {channelTitle, title, thumbnails} = snippet;
       <ul>
         <li className="text-lg p-2 font-semibold line-clamp-2">{title}</li>
         <li className="text-sm px-2">{channelTitle}</li>
-        <li className="text-sm px-2">{statistics.viewCount} views</li>
+        {statistics && <li className="text-sm px-2">{statistics.viewCount} views</li>}
       </ul>
     </div>
   )

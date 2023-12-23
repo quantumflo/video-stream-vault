@@ -19,10 +19,10 @@ const Sidebar = () => {
   if(!isMenuOpen) return null;
 
   return (
-    <div className="bg-gray-800 text-white p-4 w-60">
+    <div className="bg-gray-800 text-white p-4 w-60 ">
       <ul>
         {sidebarItems.map((item, index) => (
-          <Link  key={index} to={item === 'Home' ? '/': null } >
+          <Link  key={index} to={item === 'Home' ? '/': `/${item}` } >
           <li className="mb-2 cursor-pointer px-12 py-2 text-lg hover:bg-gray-700 p-2 rounded">
             {item}
           </li>

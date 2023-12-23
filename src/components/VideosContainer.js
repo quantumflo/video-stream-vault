@@ -2,9 +2,19 @@ import { useEffect, useState } from "react";
 import { YOUTUBE_API } from "../constants";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+// should I show the videos from the redux store directly or should I store in local state and then show it?
+// When do I show the non-queried videos? When the user first visits the page and when user clicks on Home?
 
 const VideosContainer = () => {
   const [videos, setVideos] = useState([]);
+  const queriedVideos = useSelector((state) => state.queriedVideos);
+  
+  useEffect(() => {
+    setVideos(queriedVideos);
+  }, [queriedVideos]);
+
   useEffect(() => {
     fetchVideos();
   }, []);
@@ -16,7 +26,7 @@ const VideosContainer = () => {
   };
   return (
     <div className="flex flex-wrap pl-4 justify-center bg-whitesmoke">
-      {videos.map((video) => (
+      {videos.length > 0 && videos.map((video) => (
         <Link key={video.id} to={`/watch?v=${video.id}`}>
         <VideoCard info={video}></VideoCard>
         </Link>

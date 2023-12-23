@@ -6,12 +6,22 @@ import store from "./redux/store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
 import WatchVideo from "./components/WatchVideo";
+import Error from "./components/Error";
+import NavMenu from "./components/NavMenu";
 
 const appRouter = createBrowserRouter([
-  { path: "/", element: <Body />,  children: [
+  { 
+    path: "/",
+    element: <Body />,
+    errorElement: <Error />,
+    children: [
     {
       path: "/",
       element: <MainContainer />
+    },
+    {
+      path: "/:nav",
+      element: <NavMenu />
     },
     {
       path: "/watch",

@@ -1,4 +1,4 @@
-const REACT_APP_YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+export const REACT_APP_YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 export const MAINLOGOIMG = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg9RQaSsMRiyK8MzG0HIttvLqlxnM44a6V_V8f0tH4otaU5NcoBmx6VTz0i73w2sFMeyA&usqp=CAU";
 export const HAMBURGERIMG = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPm18L_L37fW_pi1VVymz7Ukq_SAf7R5E_jQ&usqp=CAU";
 export const PROFILEIMG = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUWXln2vaxONq5KB-FB-TYVqXGthR53CqiuNHL_kYYFhXBP9U8LGdT2vNFqM7nmgBuk9Q&usqp=CAU";
