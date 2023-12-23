@@ -12,6 +12,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Watch youtube video by clicking on the video
 - Youtube comments
 
+# Improvements
+ - SideBar and Header should be in the screen when main container is scrolled
+
+
 ## Available Scripts
 
 In the project directory, you can run:
