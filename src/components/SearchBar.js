@@ -7,7 +7,7 @@ import {
   YT_SEARCH_API,
   YT_SUGGESTIONS_API,
   REACT_APP_YOUTUBE_API_KEY,
-} from "../constants";
+} from "../utils/constants";
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");

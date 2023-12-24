@@ -1,5 +1,5 @@
 import React from "react";
-import { PROFILEIMG } from "../constants";
+import { PROFILEIMG } from "../utils/constants";
 
 const comments = [
   {

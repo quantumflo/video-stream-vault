@@ -1,4 +1,4 @@
-import { MAINLOGOIMG, HAMBURGERIMG, PROFILEIMG } from "../constants";
+import { MAINLOGOIMG, HAMBURGERIMG, PROFILEIMG } from "../utils/constants";
 import { toggleMenu } from "../redux/appSlice";
 import { useDispatch } from "react-redux";
 import SearchBar from "./SearchBar";
