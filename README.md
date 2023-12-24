@@ -13,7 +13,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Youtube comments
 
 # Improvements
- - SideBar and Header should be in the screen when main container is scrolled
+ - SideBar and Header should be in view when main container is scrolled
    
 
 
