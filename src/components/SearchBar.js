@@ -1,13 +1,8 @@
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { cacheResults } from "../redux/searchSlice";
-import { setQueriedVideos } from "../redux/queriedVideosSlice";
 
-import {
-  YT_SEARCH_API,
-  YT_SUGGESTIONS_API,
-  REACT_APP_YOUTUBE_API_KEY,
-} from "../utils/constants";
+import { YT_SUGGESTIONS_API } from "../utils/constants";
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,19 +11,19 @@ const SearchBar = () => {
   const searchCache = useSelector((state) => state.search);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (searchCache[searchQuery]) {
-        setSuggestions(searchCache[searchQuery]);
-      } else {
-        fetchSuggestions();
-      }
-    }, 200);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     if (searchCache[searchQuery]) {
+  //       setSuggestions(searchCache[searchQuery]);
+  //     } else {
+  //       fetchSuggestions();
+  //     }
+  //   }, 200);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [searchQuery]);
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, [searchQuery]);
 
   const fetchSuggestions = async () => {
     const response = await fetch(`${YT_SUGGESTIONS_API}${searchQuery}`);
@@ -38,17 +33,17 @@ const SearchBar = () => {
   };
 
   const fetchSearchResults = async (suggestion) => {
-    const response = await fetch(
-      `${YT_SEARCH_API}${suggestion}&key=${REACT_APP_YOUTUBE_API_KEY}`
-    );
-    const data = await response.json();
-    dispatch(setQueriedVideos(data.items));
+    // const response = await fetch(
+    //   `${YT_SEARCH_API}${suggestion}&key=${REACT_APP_YOUTUBE_API_KEY}`
+    // );
+    // const data = await response.json();
+    // dispatch(setQueriedVideos(data.items));
   };
 
   const onSuggestionClick = (suggestion) => {
     fetchSearchResults(suggestion);
     setSearchQuery(suggestion);
-    setSuggestionsVisible(false)
+    setSuggestionsVisible(false);
   };
 
   return (
@@ -57,7 +52,10 @@ const SearchBar = () => {
         className="border h-8 rounded-l-full p-4 border-gray-500 mb-1 w-120"
         type="text"
         placeholder="Search"
-        onChange={(e) => { setSuggestionsVisible(true); setSearchQuery(e.target.value)} }
+        onChange={(e) => {
+          setSuggestionsVisible(true);
+          setSearchQuery(e.target.value);
+        }}
         onBlur={() => setSuggestionsVisible(false)}
         value={searchQuery}
       />
